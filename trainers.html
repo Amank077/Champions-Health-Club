@@ -9,6 +9,11 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Fonts: Oswald (headings) + Montserrat (body) - consistent gym aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
   <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
@@ -21,6 +26,10 @@
           },
           boxShadow: {
             glow: '0 0 25px rgba(255,212,0,0.35)'
+          },
+          fontFamily: {
+            heading: ['Oswald', 'sans-serif'],
+            body: ['Montserrat', 'sans-serif']
           }
         }
       }
@@ -80,49 +89,45 @@
 
     /* Bouncing WhatsApp button */
     @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-20px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-20px); }
     }
 
-    /* Optional: subtle shadow pulse + bounce combination */
+    @keyframes shadowPulse {
+      0%, 100% { box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+      50%      { box-shadow: 0 20px 40px rgba(37, 211, 102, 0.55); }
+    }
+
     .whatsapp-float {
       animation:
         bounce 1.2s infinite ease-in-out,
         shadowPulse 2s infinite ease-in-out;
     }
 
-    @keyframes shadowPulse {
+    /* Apply custom fonts globally */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: theme('fontFamily.heading');
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
 
-      0%,
-      100% {
-        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      }
-
-      50% {
-        box-shadow: 0 20px 40px rgba(37, 211, 102, 0.55);
-      }
+    body {
+      font-family: theme('fontFamily.body');
     }
   </style>
 </head>
 
-<body class="bg-dark text-white font-sans">
+<body class="bg-dark text-white antialiased">
 
   <!-- ================= NAVBAR ================= -->
   <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
-      <h1 class="text-2xl font-extrabold tracking-wide">
+      <h1 class="text-2xl font-heading tracking-wide">
         <span class="text-accent">Iron Fitness Club</span>
       </h1>
 
       <!-- Desktop Menu -->
-      <ul class="hidden md:flex gap-8 font-medium">
+      <ul class="hidden md:flex gap-8 font-body font-medium">
         <li><a href="index.html" class="hover:text-accent transition">Home</a></li>
         <li><a href="about.html" class="hover:text-accent transition">About</a></li>
         <li><a href="membership.html" class="hover:text-accent transition">Membership</a></li>
@@ -145,11 +150,8 @@
     <!-- Mobile Menu Panel -->
     <div id="mobile-menu"
       class="fixed inset-y-0 right-0 w-4/5 max-w-sm bg-dark/95 backdrop-blur-xl shadow-2xl z-40 flex flex-col pt-20 px-6 transform">
-      <button id="close-menu" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-accent">
-        ×
-      </button>
 
-      <ul class="flex flex-col gap-8 text-xl font-medium mt-10">
+      <ul class="flex flex-col gap-8 text-xl font-body font-medium mt-10">
         <li><a href="index.html" class="hover:text-accent transition mobile-link">Home</a></li>
         <li><a href="about.html" class="hover:text-accent transition mobile-link">About</a></li>
         <li><a href="membership.html" class="hover:text-accent transition mobile-link">Membership</a></li>
@@ -160,8 +162,8 @@
       </ul>
 
       <div class="mt-auto mb-12">
-        <a href="tel:+68 5340 408"
-          class="block text-center py-4 rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-black transition text-lg font-semibold">
+        <a href="tel:+685340408"
+          class="block text-center py-4 rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-black transition text-lg font-body font-semibold">
           Call Us
         </a>
       </div>
@@ -180,10 +182,10 @@
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 text-center">
-      <h1 class="text-5xl md:text-6xl font-extrabold reveal">
+      <h1 class="text-5xl md:text-6xl font-heading reveal">
         Expert <span class="text-accent">Trainers</span>
       </h1>
-      <p class="mt-6 text-gray-300 reveal">
+      <p class="mt-6 text-gray-300 font-body reveal">
         Learn from certified professionals who build champions.
       </p>
     </div>
@@ -213,10 +215,10 @@
           </div>
 
           <div class="p-6 text-center">
-            <h3 class="text-xl font-bold">Ahmed Al-Fahad</h3>
-            <p class="text-accent text-sm mt-1">Strength Coach</p>
+            <h3 class="text-xl font-heading">Ahmed Al-Fahad</h3>
+            <p class="text-accent text-sm mt-1 font-body">Strength Coach</p>
 
-            <div class="flex justify-center gap-3 mt-4 text-xs">
+            <div class="flex justify-center gap-3 mt-4 text-xs font-body">
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">NASM</span>
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">CrossFit</span>
             </div>
@@ -238,10 +240,10 @@
           </div>
 
           <div class="p-6 text-center">
-            <h3 class="text-xl font-bold">Mohammed Saeed</h3>
-            <p class="text-accent text-sm mt-1">Personal Trainer</p>
+            <h3 class="text-xl font-heading">Mohammed Saeed</h3>
+            <p class="text-accent text-sm mt-1 font-body">Personal Trainer</p>
 
-            <div class="flex justify-center gap-3 mt-4 text-xs">
+            <div class="flex justify-center gap-3 mt-4 text-xs font-body">
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">ACE</span>
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">Nutrition</span>
             </div>
@@ -263,10 +265,10 @@
           </div>
 
           <div class="p-6 text-center">
-            <h3 class="text-xl font-bold">Ravi Kumar</h3>
-            <p class="text-accent text-sm mt-1">CrossFit Trainer</p>
+            <h3 class="text-xl font-heading">Ravi Kumar</h3>
+            <p class="text-accent text-sm mt-1 font-body">CrossFit Trainer</p>
 
-            <div class="flex justify-center gap-3 mt-4 text-xs">
+            <div class="flex justify-center gap-3 mt-4 text-xs font-body">
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">CrossFit L2</span>
             </div>
           </div>
@@ -287,10 +289,10 @@
           </div>
 
           <div class="p-6 text-center">
-            <h3 class="text-xl font-bold">Fatima Noor</h3>
-            <p class="text-accent text-sm mt-1">Yoga Instructor</p>
+            <h3 class="text-xl font-heading">Fatima Noor</h3>
+            <p class="text-accent text-sm mt-1 font-body">Yoga Instructor</p>
 
-            <div class="flex justify-center gap-3 mt-4 text-xs">
+            <div class="flex justify-center gap-3 mt-4 text-xs font-body">
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">RYT 500</span>
               <span class="px-3 py-1 rounded-full bg-accent/20 text-accent">Mobility</span>
             </div>
@@ -303,46 +305,60 @@
 
   <!-- ================= CTA ================= -->
   <section class="py-20 bg-black text-center">
-    <h2 class="text-4xl font-bold reveal">
+    <h2 class="text-4xl font-heading reveal">
       Train With The Best
     </h2>
-    <p class="mt-4 text-gray-300 reveal">
+    <p class="mt-4 text-gray-300 font-body reveal">
       Book your personal training session today.
     </p>
 
-    <a href="https://wa.me/68 5340 408" class="inline-block mt-8 px-10 py-4 rounded-full bg-accent text-black font-bold 
+    <a href="https://wa.me/685340408" class="inline-block mt-8 px-10 py-4 rounded-full bg-accent text-black font-body font-bold 
             hover:shadow-glow transition reveal">
       WhatsApp Us
     </a>
   </section>
 
   <!-- ================= WHATSAPP FLOATING ================= -->
-  <a href="https://wa.me/68 5340 408" class="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-[#25D366] 
+  <a href="https://wa.me/685340408" class="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-[#25D366] 
           flex items-center justify-center shadow-2xl z-50 overflow-hidden
-          hover:scale-110 active:scale-95 transition-all duration-300"
-    style="animation: bounce 2.2s infinite ease-in-out;">
+          hover:scale-110 active:scale-95 transition-all duration-300 whatsapp-float">
     <img src="./assets/images/whatsapp-logo.png" alt="Chat on WhatsApp" class="w-10 h-10 object-contain">
   </a>
 
-
   <!-- ================= FOOTER ================= -->
   <footer class="py-10 bg-dark border-t border-white/10 text-center">
-    <p class="text-gray-400 text-sm">
+    <p class="text-gray-400 text-sm font-body">
       © 2026 Iron Fitness Club | Skyline City, New York
     </p>
   </footer>
 
   <!-- ================= JAVASCRIPT ================= -->
   <script>
-    // Navbar scroll effect
+    // Navbar scroll effect - solid on mobile, blur only on desktop+
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('backdrop-blur-xl', 'bg-black/60', 'py-2');
+
+    function updateNavbar() {
+      const scrolled = window.scrollY > 50;
+      const isDesktop = window.innerWidth >= 768;
+
+      if (scrolled && isDesktop) {
+        navbar.classList.add('bg-black/70', 'backdrop-blur-xl', 'py-3');
+        navbar.classList.remove('bg-dark');
       } else {
-        navbar.classList.remove('backdrop-blur-xl', 'bg-black/60', 'py-2');
+        navbar.classList.remove('bg-black/70', 'backdrop-blur-xl');
+        navbar.classList.add('bg-dark');
+        if (scrolled) {
+          navbar.classList.add('py-3');
+        } else {
+          navbar.classList.remove('py-3');
+        }
       }
-    });
+    }
+
+    window.addEventListener('scroll', updateNavbar);
+    window.addEventListener('resize', updateNavbar);
+    // Initial call
+    updateNavbar();
 
     // Scroll Reveal
     const reveals = document.querySelectorAll('.reveal');
@@ -373,7 +389,6 @@
     closeBtn.addEventListener('click', toggleMenu);
     overlay.addEventListener('click', toggleMenu);
 
-    // Close menu when clicking a link
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         if (mobileMenu.classList.contains('open')) {
